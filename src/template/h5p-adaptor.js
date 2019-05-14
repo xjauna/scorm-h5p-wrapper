@@ -31,7 +31,11 @@ var onCompleted = function (result) {
   } else if (scorm.version == "1.2") {
     masteryScore = scorm.get("cmi.student_data.mastery_score") / 100;
   }
-
+ 
+  if (result.score === undefined) {
+    result.score = { scaled: 1 };
+  }
+ 
   scorm.set("cmi.core.score.raw", result.score.scaled * 100);
   scorm.set("cmi.core.score.min", "0");
   scorm.set("cmi.core.score.max", "100");
